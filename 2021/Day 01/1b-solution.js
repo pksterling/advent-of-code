@@ -4,8 +4,10 @@ let input = inputText.split("\n").map((e) => parseInt(e))
 
 var increases = 0
 
-for (let i = 1; i < input.length; i++) {
-  if (input[i] > input[i - 1]) {
+for (let i = 3; i < input.length; i++) {
+  var a = input[i] + input[i - 1] + input[i - 2]
+  var b = input[i - 1] + input[i - 2] + input[i - 3]
+  if (a > b) {
     increases++
   }
 }
