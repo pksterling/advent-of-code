@@ -1,57 +1,49 @@
-const fs = require("fs")
-let inputText = fs.readFileSync("./3-input.txt", "utf-8")
-let input = inputText.split("\r\n")
+const fs = require("fs");
+let inputText = fs.readFileSync("./3-input.txt", "utf-8");
+let input = inputText.split("\r\n");
 
 function findModeOfIndex(array, checkIndex) {
   var indexScore = array.reduce((count, binaryNumber) => {
-    if (binaryNumber[checkIndex] == 0) {
-      return count - 1
-    } else {
-      return count + 1
-    }
-  }, 0)
-  if (indexScore < 0) {
-    return "0"
-  } else {
-    return "1"
-  }
+    return binaryNumber[checkIndex] == 0 ? count - 1 : count + 1;
+  }, 0);
+
+  return indexScore < 0 ? "0" : "1";
 }
 
 function findOxygenGeneratorRating(array, index = 0) {
-  if (array.length === 1) {
-    return array[0]
+  if (array.length == 1) {
+    return array[0];
   }
 
-  var mode = findModeOfIndex(array, index)
+  var mode = findModeOfIndex(array, index);
 
-  array = array.filter(binaryNumber => {
-    return binaryNumber[index] == mode
-  })
+  array = array.filter((binaryNumber) => {
+    return binaryNumber[index] == mode;
+  });
 
-  return findOxygenGeneratorRating(array, index + 1)
+  return findOxygenGeneratorRating(array, index + 1);
 }
 
 function findco2Rating(array, index = 0) {
   if (array.length === 1) {
-    return array[0]
+    return array[0];
   }
 
-  var mode = findModeOfIndex(array, index)
-  var antiMode = mode =="0" ? "1" : "0"
+  var antiMode = findModeOfIndex(array, index) == "0" ? "1" : "0";
 
-  array = array.filter(binaryNumber => {
-    return binaryNumber[index] == antiMode
-  })
+  array = array.filter((binaryNumber) => {
+    return binaryNumber[index] == antiMode;
+  });
 
-  return findco2Rating(array, index + 1)
+  return findco2Rating(array, index + 1);
 }
 
 function calculateLifeSupportRating(input) {
-  var oxygenRating = findOxygenGeneratorRating(input)
-  var co2rating = findco2Rating(input)
+  var oxygenRatingBinary = findOxygenGeneratorRating(input);
+  var co2RatingBinary = findco2Rating(input);
   var lifeSupportRating =
-    parseInt(oxygenRating, 2) * parseInt(co2rating, 2) 
-    return lifeSupportRating
+    parseInt(oxygenRatingBinary, 2) * parseInt(co2RatingBinary, 2);
+  return lifeSupportRating;
 }
 
 console.log(calculateLifeSupportRating(input));
