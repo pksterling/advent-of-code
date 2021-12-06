@@ -3,7 +3,9 @@ let inputText = fs.readFileSync("./5-input.txt", "utf-8");
 let input = inputText
   .split("\r\n")
   .map((endpoints) =>
-    endpoints.split(" -> ").map((coordinates) => coordinates.split(",").map(e => parseInt(e)))
+    endpoints
+      .split(" -> ")
+      .map((coordinates) => coordinates.split(",").map((e) => parseInt(e)))
   );
 
 function createField(vectors) {
@@ -21,7 +23,6 @@ function createField(vectors) {
   for (let i = 0; i - 1 < y; i++) {
     field[i] = [];
     for (let j = 0; j - 1 < x; j++) {
-      // console.log(i + ": " + j)
       field[i][j] = 0;
     }
   }
@@ -40,7 +41,7 @@ function markVent(vector, field) {
     let end = [y1, y2].sort((a, b) => a - b)[1];
 
     for (let i = start; i - 1 < end; i++) {
-      field[i][x1]++
+      field[i][x1]++;
     }
   } else if (y1 == y2) {
     let start = [x1, x2].sort((a, b) => a - b)[0];
@@ -51,7 +52,7 @@ function markVent(vector, field) {
     }
   }
 
-  return field
+  return field;
 }
 
 function calculateDangerPoints(field) {
