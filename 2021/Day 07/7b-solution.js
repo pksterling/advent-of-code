@@ -1,6 +1,6 @@
 const fs = require("fs");
 let inputText = fs.readFileSync("./7-input.txt", "utf-8");
-let input = inputText.split(",").map((e) => parseInt(e));
+let input = inputText.split(",").map(Number);
 
 var average = Math.floor(
   input.reduce((sum, number) => sum + number) / input.length

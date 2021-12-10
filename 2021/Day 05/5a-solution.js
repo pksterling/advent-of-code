@@ -5,7 +5,7 @@ let input = inputText
   .map((endpoints) =>
     endpoints
       .split(" -> ")
-      .map((coordinates) => coordinates.split(",").map((e) => parseInt(e)))
+      .map((coordinates) => coordinates.split(",").map(Number))
   );
 
 function createField(vectors) {

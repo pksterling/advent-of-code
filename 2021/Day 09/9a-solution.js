@@ -2,7 +2,7 @@ const fs = require("fs");
 let inputText = fs.readFileSync("./9-input.txt", "utf-8");
 let area = inputText
   .split("\r\n")
-  .map((row) => row.split("").map((e) => parseInt(e)));
+  .map((row) => row.split("").map(Number));
 
 let checkRow = (row, riskFactor) => {
   for (let col = 0; col < area[row].length; col++) {

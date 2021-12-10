@@ -1,6 +1,6 @@
 const fs = require("fs");
 let inputText = fs.readFileSync("./6-input.txt", "utf-8");
-let array = inputText.split(",").map((e) => parseInt(e));
+let array = inputText.split(",").map(Number);
 
 var numberGroups = Array(9).fill(0);
 

@@ -7,7 +7,7 @@ let numbers = input
   .map((string) => parseInt(string));
 let boards = input.map((board) => {
   return board.split("\r\n").map((row) => {
-    return row.match(/\d\d|\s\d(?!\d)/g).map((e) => parseInt(e));
+    return row.match(/\d\d|\s\d(?!\d)/g).map(Number);
   });
 });
 
