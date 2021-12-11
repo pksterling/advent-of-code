@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { listenerCount } = require("process");
 let inputText = fs.readFileSync("./10-input.txt", "utf-8");
 let input = inputText.split("\r\n").map((row) => row.split(""));
 
