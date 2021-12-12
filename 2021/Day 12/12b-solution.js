@@ -27,13 +27,12 @@ let hasSpareVisit = (visited) => {
 
 let findPaths = (path = ["start"]) => {
   let lastVisited = path[path.length - 1];
-  let paths = 0;
 
   if (lastVisited == "end") {
     return 1;
   }
 
-  caves[lastVisited].forEach((next) => {
+  let paths = caves[lastVisited].reduce((paths, next) => {
     if (
       next != "start" &&
       (next == next.toUpperCase() ||
@@ -42,7 +41,9 @@ let findPaths = (path = ["start"]) => {
     ) {
       paths += findPaths(path.concat(next));
     }
-  });
+
+    return paths
+  }, 0);
 
   return paths;
 }
