@@ -28,22 +28,20 @@ let hasSpareVisit = (visited) => {
 let findPaths = (path = ["start"]) => {
   let lastVisited = path[path.length - 1];
 
-  if (lastVisited == "end") {
-    return 1;
-  }
+  return lastVisited == "end"
+    ? 1
+    : caves[lastVisited].reduce((paths, next) => {
+        if (
+          next != "start" &&
+          (next == next.toUpperCase() ||
+            !path.includes(next) ||
+            hasSpareVisit(path))
+        ) {
+          paths += findPaths(path.concat(next));
+        }
 
-  return caves[lastVisited].reduce((paths, next) => {
-    if (
-      next != "start" &&
-      (next == next.toUpperCase() ||
-        !path.includes(next) ||
-        hasSpareVisit(path))
-    ) {
-      paths += findPaths(path.concat(next));
-    }
-
-    return paths
-  }, 0);
-}
+        return paths;
+      }, 0);
+};
 
 console.log(findPaths());

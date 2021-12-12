@@ -14,22 +14,19 @@ let areConnected = (a, b) => {
 let findPaths = (journey = ["start"]) => {
   let lastVisited = journey[journey.length - 1];
 
-  if (lastVisited == "end") {
-    return 1;
-  }
+  return lastVisited == "end"
+    ? 1
+    : caves.reduce((paths, cave) => {
+        if (
+          cave != lastVisited &&
+          areConnected(lastVisited, cave) &&
+          (!journey.includes(cave) || cave == cave.toUpperCase())
+        ) {
+          paths += findPaths(journey.concat(cave));
+        }
 
-  return caves.reduce((paths, cave) => {
-    if (
-      cave != lastVisited &&
-      areConnected(lastVisited, cave) &&
-      (!journey.includes(cave) ||
-        cave == cave.toUpperCase())
-    ) {
-      paths += findPaths(journey.concat(cave));
-    }
-
-    return paths;
-  }, 0);
-}
+        return paths;
+      }, 0);
+};
 
 console.log(findPaths());
