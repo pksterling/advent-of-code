@@ -32,7 +32,7 @@ let findPaths = (path = ["start"]) => {
     return 1;
   }
 
-  let paths = caves[lastVisited].reduce((paths, next) => {
+  return caves[lastVisited].reduce((paths, next) => {
     if (
       next != "start" &&
       (next == next.toUpperCase() ||
@@ -44,8 +44,6 @@ let findPaths = (path = ["start"]) => {
 
     return paths
   }, 0);
-
-  return paths;
 }
 
 console.log(findPaths());

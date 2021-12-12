@@ -11,27 +11,25 @@ let areConnected = (a, b) => {
   }
 };
 
-let findPaths = (journey = ["start"], paths = 0) => {
+let findPaths = (journey = ["start"]) => {
   let lastVisited = journey[journey.length - 1];
 
   if (lastVisited == "end") {
     return 1;
   }
 
-  paths = caves.reduce((paths, cave) => {
+  return caves.reduce((paths, cave) => {
     if (
       cave != lastVisited &&
       areConnected(lastVisited, cave) &&
       (!journey.includes(cave) ||
         cave == cave.toUpperCase())
     ) {
-      paths += findPaths(journey.concat(cave), paths);
+      paths += findPaths(journey.concat(cave));
     }
 
     return paths;
   }, 0);
-
-  return paths;
 }
 
 console.log(findPaths());
