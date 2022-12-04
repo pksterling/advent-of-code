@@ -18,4 +18,4 @@ let sumOfPrioritiesOfCommonItems = groups
   ) + 1)
   .reduce((sum, num) => sum + num)
 
-  console.log(sumOfPrioritiesOfCommonItems)
+console.log(sumOfPrioritiesOfCommonItems)
